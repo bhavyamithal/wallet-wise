@@ -5,11 +5,6 @@ import React from 'react'
 
 const SignUp = async () => {
 
-  const loggedIn = await getLoggedInUser();
-
-  if (loggedIn) redirect('/')
-
-
   return (
     <section className='flex-center size-full max-sm:px-6'>
       <AuthForm
