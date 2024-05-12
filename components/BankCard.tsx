@@ -2,11 +2,12 @@ import { formatAmount } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import Copy from './Copy'
 
 const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
     return (
         <div className='flex flex-col'>
-            <Link href={'/'} className='bank-card'>
+            <Link href={`/transaction-history/?id=${account.appwriteItemId}`} className='bank-card min-w-[320px]'>
                 <div className='bank-card_content'>
                     <div>
                         <h1 className='text-16 font-semibold text-white'>
@@ -27,7 +28,9 @@ const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
                             </h1>
                         </div>
                         <p className='text-14 font-semibold tracking-[1.1px] text-white'>
-                            ●●●● ●●●● ●●●● <span className='text-16'>1234</span>
+                            ●●●● ●●●● ●●●● <span className='text-16'>
+                                {account?.mask}
+                            </span>
                         </p>
                     </article>
 
@@ -35,7 +38,7 @@ const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
 
                 <div className='bank-card_icon'>
                     <Image src={'/icons/Paypass.svg'} width={20} height={24} alt='view card' />
-                    <Image src={'/icons/mastercard.svg'} width={45} height={32} alt='view card' className=''/>
+                    <Image src={'/icons/mastercard.svg'} width={45} height={32} alt='view card' className='' />
 
                 </div>
 
@@ -48,6 +51,12 @@ const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
                 />
 
             </Link>
+
+            {showBalance && (
+                // @ts-ignore
+                <Copy title={account.sharaebleId} />
+            )}
+
         </div>
     )
 }
