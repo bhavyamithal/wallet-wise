@@ -57,7 +57,7 @@ import {
                   </div>
                 </TableCell>
   
-                <TableCell className={`pl-2 pr-10 font-semibold ${
+                <TableCell className={`pl-2 pr-10 font-semibold whitespace-nowrap ${
                   isDebit || amount[0] === '-' ?
                     'text-[#f04438]'
                     : 'text-[#039855]'
@@ -69,11 +69,11 @@ import {
                   <CategoryBadge category={status} /> 
                 </TableCell>
   
-                <TableCell className="min-w-32 pl-2 pr-10">
+                <TableCell className="min-w-32 pl-2 pr-10 ">
                   {formatDateTime(new Date(t.date)).dateTime}
                 </TableCell>
   
-                <TableCell className="pl-2 pr-10 capitalize min-w-24">
+                <TableCell className="pl-2 pr-10 capitalize min-w-24 whitespace-nowrap">
                  {t.paymentChannel}
                 </TableCell>
   
