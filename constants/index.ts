@@ -12,7 +12,7 @@ export const sidebarLinks = [
   {
     imgURL: "/icons/transaction.svg",
     route: "/transaction-history",
-    label: "Transaction History",
+    label: "Txns History",
   },
   {
     imgURL: "/icons/money-send.svg",

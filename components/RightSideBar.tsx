@@ -15,7 +15,7 @@ const RightSideBar = ({ user, banks, transactions }: RightSidebarProps) => {
                 <div className='profile-banner' />
                 <div className='profile'>
                     <div className='profile-img'>
-                        <span className='text-5xl font-bold text-bankGradient'>
+                        <span className='text-3xl font-bold text-bankGradient'>
                             {user?.firstName[0]}
                         </span>
                     </div>
@@ -33,17 +33,17 @@ const RightSideBar = ({ user, banks, transactions }: RightSidebarProps) => {
 
             <section className='banks'>
                 <div className='flex w-full justify-between'>
-                    <h2 className='header-2'>
+                    <h2 className='text-base font-semibold text-gray-900'>
                         My Banks
                     </h2>
                     <Link href={'/'} className='flex items-center'>
                         <Image
                             src={'/icons/plus.svg'}
-                            width={20}
-                            height={20}
+                            width={14}
+                            height={14}
                             alt='Add Bank'
                         />
-                        <h2 className='text-14 font-semibold text-gray-600'>
+                        <h2 className='text-sm font-semibold text-gray-600'>
                             Add Bank
                         </h2>
                     </Link>
@@ -54,7 +54,7 @@ const RightSideBar = ({ user, banks, transactions }: RightSidebarProps) => {
                         {banks.slice(0, 2).map((bank, index) => (
                             <div
                                 key={bank.$id}
-                                className={`absolute ${index === 1 ? 'right-0 top-8' : ''}`}
+                                className={`absolute ${index === 1 ? 'right-0 top-8' : '-right-3'}`}
                                 style={{ zIndex: index + 1 }}
                             >
                                 <BankCard
@@ -68,9 +68,9 @@ const RightSideBar = ({ user, banks, transactions }: RightSidebarProps) => {
                     </div>
                 )}
 
-                <div className='flex flex-1 mt-56 flex-col gap-6'>
-                    <h2 className='header-2'>Top categories</h2>
-                    <div className='space-y-5'>
+                <div className='flex flex-1 mt-44 pb-10 flex-col gap-6'>
+                    <h2 className='text-base font-semibold text-gray-900'>Top categories</h2>
+                    <div className='space-y-2'>
                         {categories.map((category, index) => (
                             <Category key={category.name} category={category} />
                         ))}

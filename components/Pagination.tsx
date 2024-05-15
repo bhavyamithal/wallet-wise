@@ -1,26 +1,37 @@
 "use client";
 
-import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
-
-import { Button } from "@/components/ui/button";
-import { formUrlQuery } from "@/lib/utils";
+import { formUrlQuery } from '@/lib/utils';
+import { useSearchParams, useRouter } from 'next/navigation'; // Import useRouter from next/router
+import { useState } from 'react';
+import TableLoaderSkeleton from './TableLoaderSkeleton';
+import { Button } from './ui/button';
+import Image from 'next/image';
 
 export const Pagination = ({ page, totalPages }: PaginationProps) => {
   const router = useRouter();
-  const searchParams = useSearchParams()!;
+  const searchParams = useSearchParams();
+  const [loading, setLoading] = useState(false); // Add loading state
 
-  const handleNavigation = (type: "prev" | "next") => {
+  const handleNavigation = async (type: "prev" | "next") => {
+    setLoading(true); // Set loading to true when changing page
+  
     const pageNumber = type === "prev" ? page - 1 : page + 1;
-
+  
     const newUrl = formUrlQuery({
       params: searchParams.toString(),
       key: "page",
       value: pageNumber.toString(),
     });
-
-    router.push(newUrl, { scroll: false });
+  
+    router.push(newUrl); // Use shallow routing // Use shallow routing
+  
+    window.scrollTo(0, 0); // Scroll to the top of the page
+    setLoading(false); // Set loading to false after page has loaded
   };
+
+  if (loading) {
+    return <TableLoaderSkeleton />; // Render skeleton component while loading
+  }
 
   return (
     <div className="flex justify-between gap-3">

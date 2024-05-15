@@ -1,10 +1,11 @@
 import HeaderBox from '@/components/HeaderBox'
 import { Pagination } from '@/components/Pagination';
+import TableLoaderSkeleton from '@/components/TableLoaderSkeleton';
 import TransactionsTable from '@/components/TransactionsTable';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 import { formatAmount } from '@/lib/utils';
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
@@ -72,10 +73,12 @@ const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamPro
           />
           {totalPages > 1 && (
             <div className='my-4 w-full'>
-              <Pagination
-                totalPages={totalPages}
-                page={currentPage}
-              />
+
+                <Pagination
+                  totalPages={totalPages}
+                  page={currentPage}
+                />
+
             </div>
           )}
         </section>

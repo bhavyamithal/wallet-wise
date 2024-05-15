@@ -4,7 +4,7 @@ import RightSideBar from '@/components/RightSideBar';
 import TotalBalanceBox from '@/components/TotalBalanceBox';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
@@ -29,8 +29,9 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
   return (
     <section className='home'>
-      <div className='home-content'>
-        <header className='home-header'>
+
+      <div className='home-content max-w-3xl'>
+        <header className='home-header py-5'>
           <HeaderBox
             type="greeting"
             title="Welcome"
@@ -43,18 +44,21 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
             totalCurrentBalance={accounts?.totalCurrentBalance}
           />
         </header>
+
         <RecentTransactions
           accounts={accountsData}
           transactions={account?.transactions}
           appwriteItemId={appwriteItemId}
           page={currentPage}
         />
+
       </div>
       <RightSideBar
         user={loggedIn}
         banks={accountsData}
         transactions={account?.transactions}
       />
+
     </section>
   )
 }
